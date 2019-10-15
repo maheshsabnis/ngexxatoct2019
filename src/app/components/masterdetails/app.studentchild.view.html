@@ -1,0 +1,18 @@
+<div class="container">
+    <h1>List of Students</h1>
+    <h3>Students from Course {{CourseId}}</h3>
+    <input type="button" value="NotifyBack" class="btn btn-danger" (click)="onNotifyBack()">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td *ngFor="let c of tableColumns">{{c}}</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let s of FilterStudents">
+                <td *ngFor="let c of tableColumns">{{s[c]}}</td>
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</div>
