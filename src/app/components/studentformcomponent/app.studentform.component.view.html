@@ -1,0 +1,59 @@
+<h3>The Student Form</h3>
+<div class="container">
+    <form name="frmstudent" (ngSubmit)="save()" [formGroup]="frmStudent">
+        <div class="form-group">
+            <label for="StudentId">Student Id</label>
+            <input type="text" name="StudentId" formControlName="StudentId" class="form-control">
+            <div class="alert alert-danger" *ngIf="frmStudent.controls.StudentId.dirty&&!frmStudent.controls.StudentId.valid">
+                <p *ngIf="frmStudent.controls.StudentId.errors.required">Student Id is Must</p>
+                <p *ngIf="frmStudent.controls.StudentId.errors.pattern">Student Id must be numeric</p>
+                <p *ngIf="frmStudent.controls.StudentId.errors.minlength">Student Id must be 2 digit minimum</p>
+                <p *ngIf="frmStudent.controls.StudentId.errors.maxlength">Student Id can be 6 digits maximum</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="StudentName">Student Name</label>
+            <input type="text" name="StudentName" formControlName="StudentName" class="form-control">
+            <div class="alert alert-danger" *ngIf="frmStudent.controls.StudentName.dirty&&!frmStudent.controls.StudentName.valid">
+                <p *ngIf="frmStudent.controls.StudentName.invalid">Student Name must start from A or B/p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Course">Course</label>
+            <select name="Course" class="form-control" formControlName="Course">
+               <option *ngFor="let c of courses" value="{{c}}">{{c}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Year">Year</label>
+            <select name="Year" class="form-control" formControlName="Class">
+              <option *ngFor="let c of couresYear" value="{{c}}">{{c}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="University">University</label>
+            <select name="University" class="form-control" formControlName="University">
+              <option *ngFor="let u of universities" value={{u}}>{{u}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="button" value="New" (click)="clear()" class="btn btn-warning">
+            <input type="submit" value="Save" class="btn btn-success">
+        </div>
+    </form>
+
+</div>
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td *ngFor="let h of headers">{{h}}</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let s of students" (click)="getSelectdValue(s)">
+                <td *ngFor="let h of headers">{{s[h]}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
