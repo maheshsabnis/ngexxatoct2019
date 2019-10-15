@@ -179,12 +179,42 @@ Angular Directives
             1. *ngIf="condition"
          3. *ngSwitch, *ngSwitchCase 
 
-#=============================================================================
+#================================================================================================
 To use ngModel for Two-Way binding, use FormsModule imported from @angular/forms  
+- FormsModule
+  - Two-Way Databinding
+- Form Types
+  - Template Forms
+  - Reactive Forms / Data-Driven Forms / Model-Driven Forms
+    - Forms those are directly bound to the Model Object aka Entity
+    - Managed using Model Properties
+  - Implementation of Reactive Forms
+    - Import ReactiveFormsModule in @NgModule from @angular/forms pacakge
+    - Use FormGroup
+      - Represents an instance of ngForm, and ngForm is by default maped with <form> tag, and it will provide (ngSubmit) event
+      - FormGroup will have all Editable Elements in it, this is known as 'FormControlCollection'
+        - Each element in FormControlCollection is actually a 'FormControl' object
+        - The FormControl is used to map the Public Property of the Model Class  with the HTML Editable element in the form 
+        - FormControl('Name of the Property from Model Class', Validation Rules if any)
+        - The 'formControlName' attribute provided by ReactiveFormsModule will actually bind the Model property with UI element. 
+        - The 'value' property of the FormGroup will represent the Value collection of Each FormControl bound with the Model class.
+    - The Validators class with static validation methods
+      - required(AbstractControl) -->Value must be mandatory in AbstractControl
+      - requiredTrue() --> Value must be true
+      - min()/max()
+      - minlength()/maxlength()
+      - pattern() --> regular Expression
+      - email()
+      - compose() --> method to apply validation rules on property and its corresponding element
 
 
-
-
+# ==========================================================================
+Communication Across Components
+1. Component Related with Parent-Child Relationship
+   1. To accept data from Parent, the child must define a public property to accept data decorated with @Input() decorator
+   2. The Input Decorated property can now be used for Property-Binding
+2. Child Component can emit data to parent using EventEmitter<T> class. The T is the payload that is the data to be emitted. The EventEmitter object must be decorated using @Output() decorator. The parent must subscribe to the EventEmitter from child using EVENT-BINDING
+3. The parent can tread the Payload from child using $event object
 
 
 
