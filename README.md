@@ -216,6 +216,53 @@ Communication Across Components
 2. Child Component can emit data to parent using EventEmitter<T> class. The T is the payload that is the data to be emitted. The EventEmitter object must be decorated using @Output() decorator. The parent must subscribe to the EventEmitter from child using EVENT-BINDING
 3. The parent can tread the Payload from child using $event object
 
+# ===========================================================================
+
+Multi-Module Programming
+1. Angular Application with 'Only-One' Application Module i.e. AppModule
+2. SharedModules
+   1. Contains Reusable-Parts of the Application i.e. AppModule 
+3. Use SharedModule as a Library application (aka sub-application, that will contains Components, Services, Routing, Pipes, Directives, etc)
+   1. Generaly Library Module is used by AppModule using 'Lazy-Loading'
+
+# Angular Routing
+1. @angular/router, the package
+2. RouterModule
+   1. The infrastructure for Routing
+   2. Provide Router Table using 'Routes' object
+   3. Routes Object contains 'Route' object with following properties
+      1. path: Relative uri string, '' for default route 
+      2. component: the name of the component
+      3. redirectTo: to set default when route expression does not match
+      4. children: [], array of Route
+      5. loadChildren: for Lazy Loading
+3. Router class
+   1. Used for explicit routing using 'navigate()' method
+      1. navigate(['Route Expression URI'])
+4. ActivatedRoute
+   1. Used for Parameterized Routing to read parameter from URL
+   2. ActivateRoute.subscribe((p)=> {p.<parameter-name>})
+5. [routerLink], the attribute directive for hyperlink. 
+   1. This queries to RouteTable to navigate 
+      1. e.g. [routerLink]="['']" ==> default
+      2. [routerLink]="['<URI>']"
+      3. [routerLink]="['/<URI>',<parameter-name>]"
+         1. Parameterized Routing
+6. <router-outlet></router-outlet>
+   1. The Component-Directive
+   2. USed for ibjecting the navigated component after routing is executed
+7. RouterModule.forRoot(); --> register route table for root of the application, RouterModule.forChild(), register route table for lazy-loading
+   1. {path:,component:,loadchildren:'<PATH-OF-MODULE>#<MODULE-NAME>'}
+
+
+
+
+
+
+
+
+
+
 
 
 
